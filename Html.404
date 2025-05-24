@@ -1,0 +1,14 @@
+<!DOCTYPE html>
+<html lang="fa" dir="rtl">
+<head>
+    <meta charset="UTF-8">
+    <title>صفحه پیدا نشد - 404</title>
+    <link rel="stylesheet" href="styles/main.css">
+</head>
+<body>
+    <div class="error-container">
+        <h1>۴۰۴ - صفحه مورد نظر یافت نشد</h1>
+        <a href="/">بازگشت به صفحه اصلی</a>
+    </div>
+</body>
+</html>
