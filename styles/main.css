@@ -1,10 +1,9 @@
-css
 :root {
-    --primary: #1A5F7A;
-    --secondary: #CC7E6B;
-    --accent: #76C4AE;
-    --bg: #FFF3E0;
-    --text: #2D2D2D;
+    --primary: #1A5F7A;    /* رنگ اصلی */
+    --secondary: #CC7E6B;  /* رنگ ثانویه */
+    --accent: #76C4AE;     /* رنگ تاکیدی */
+    --bg: #FFF3E0;         /* رنگ پس زمینه */
+    --text: #2D2D2D;       /* رنگ متن اصلی */
 }
 
 .price-calculator {
