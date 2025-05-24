@@ -1,0 +1,54 @@
+<!DOCTYPE html>
+<html lang="fa" dir="rtl">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>NUVÉ Lab - Price Calculator</title>
+    <link href="https://cdn.jsdelivr.net/gh/rastikerdar/vazirmatn@v33.003/Vazirmatn-font-face.css" rel="stylesheet">
+    <link rel="stylesheet" href="styles/main.css">
+</head>
+<body>
+    <section class="price-calculator">
+        <div class="calculator-header">
+            <h2>محاسبه گر هوشمند قیمت‌ها</h2>
+            <p>با استفاده از این ابزار می‌توانید هزینه دوره را بر اساس نیاز خود محاسبه کنید</p>
+        </div>
+
+        <div class="input-grid">
+            <div class="form-group">
+                <label for="ageGroups">تعداد گروه‌های سنی</label>
+                <input type="number" id="ageGroups" class="numeric-input" min="1" value="1">
+            </div>
+
+            <div class="form-group">
+                <label for="sessionCount">تعداد جلسات سفارشی</label>
+                <input type="number" id="sessionCount" class="numeric-input" min="0" value="0">
+            </div>
+
+            <div class="form-group">
+                <label for="contractDuration">مدت قرارداد</label>
+                <select id="contractDuration" class="form-control">
+                    <option value="3">3 ماهه</option>
+                    <option value="6">6 ماهه</option>
+                </select>
+            </div>
+
+            <div class="form-group">
+                <label for="participantCount">تعداد شرکت‌کنندگان</label>
+                <input type="number" id="participantCount" class="numeric-input" min="1" value="1">
+            </div>
+        </div>
+
+        <div class="checkbox-group">
+            <input type="checkbox" id="siblingDiscount">
+            <label for="siblingDiscount">جلسات خواهر/برادر یا دوتایی</label>
+        </div>
+
+        <button class="primary-btn" id="calculateBtn">محاسبه قیمت نهایی</button>
+        
+        <div id="priceResult"></div>
+    </section>
+
+    <script src="scripts/main.js"></script>
+</body>
+</html>
