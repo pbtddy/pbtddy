@@ -21,9 +21,9 @@ function calculatePrice() {
     const siblingDiscount = document.getElementById('siblingDiscount').checked;
     const participantCount = parseInt(document.getElementById('participantCount').value) || 0;
 
-    // Price calculation logic
-    let basePrice = 12000000 * ageGroups;
-    let customPrice = 450000 * sessionCount;
+    // پارامترهای قیمت‌گذاری
+const BASE_PRICE_PER_AGE_GROUP = 12000000; // قیمت پایه برای هر گروه سنی
+const CUSTOM_SESSION_PRICE = 450000;      // قیمت هر جلسه سفارشی
 
     // Apply discounts
     basePrice *= 0.5; // Initial cooperation discount
