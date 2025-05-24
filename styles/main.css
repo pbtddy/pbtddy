@@ -1,0 +1,21 @@
+css
+:root {
+    --primary: #1A5F7A;
+    --secondary: #CC7E6B;
+    --accent: #76C4AE;
+    --bg: #FFF3E0;
+    --text: #2D2D2D;
+}
+
+.price-calculator {
+    max-width: 800px;
+    margin: 4rem auto;
+    background: linear-gradient(145deg, rgba(255,255,255,0.9), rgba(255,255,255,0.6));
+    border-radius: 20px;
+    padding: 2.5rem;
+    box-shadow: 0 15px 40px rgba(26,95,122,0.1);
+    backdrop-filter: blur(12px);
+    border: 1px solid rgba(26,95,122,0.1);
+}
+
+/* بقیه استایل‌ها با نام‌های انگلیسی */
