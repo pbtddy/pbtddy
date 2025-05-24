@@ -1,185 +1,285 @@
-```markdown
-# NUVÉ Lab Price Calculator
+<!DOCTYPE html>
+<html lang="fa" dir="rtl">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>NUVÉ Lab - حرکت خلاقانه کودکانه</title>
+    <style>
+        :root {
+            --sage: #C8D5B9;
+            --wood: #FAEDCD;
+            --sky: #B5E2FA;
+            --yellow: #FDFFB6;
+            --accent: #FF6B6B;
+            --font-en: 'Poppins', sans-serif;
+            --font-fa: 'Samim', sans-serif;
+        }
 
-![Project Preview](https://via.placeholder.com/800x500.png?text=NUVÉ+Lab+Price+Calculator+Preview)
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
 
-یک ماشین حساب قیمت‌گذاری پیشرفته با رابط کاربری فارسی و پشتیبانی RTL
+        body {
+            font-family: var(--font-fa);
+            background: var(--sage);
+            overflow-x: scroll;
+            scroll-snap-type: x mandatory;
+            scroll-behavior: smooth;
+        }
 
-## ✨ ویژگی‌های کلیدی
+        .scroll-container {
+            display: flex;
+            width: max-content;
+        }
 
-- 💻 رابط کاربری کاملاً واکنش‌گرا (Responsive)
-- 🎨 طراحی مدرن با انیمیشن‌های ظریف
-- 📱 سازگاری با تمام دستگاه‌ها
-- 🧮 محاسبات قیمت پیشرفته با قوانین سفارشی
-- 💰 سیستم تخفیف هوشمند
-- 🌍 پشتیبانی کامل از زبان فارسی (راست به چپ)
+        .section {
+            width: 100vw;
+            height: 100vh;
+            scroll-snap-align: start;
+            padding: 4rem;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+        }
 
-## 🚀 راه اندازی سریع
+        /* هدر */
+        .header {
+            position: fixed;
+            top: 0;
+            width: 100%;
+            padding: 1.5rem;
+            background: rgba(255,255,255,0.9);
+            z-index: 1000;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
 
-### پیش نیازها
-- مرورگر مدرن (Chrome 90+, Firefox 88+, Safari 14+)
-- دسترسی به اینترنت (برای فونت Vazirmatn)
+        .logo {
+            font-family: var(--font-en);
+            font-size: 2rem;
+            color: var(--accent);
+        }
 
-### نصب
-```bash
-git clone https://github.com/yourusername/nuve-lab-price-calculator.git
-cd nuve-lab-price-calculator
-```
+        /* بخش اصلی */
+        .hero {
+            background: linear-gradient(45deg, var(--sage), var(--sky));
+            flex-direction: column;
+            text-align: center;
+        }
 
-## 🛠 استفاده
+        .hero h1 {
+            font-size: 4rem;
+            margin-bottom: 2rem;
+            animation: float 3s ease-in-out infinite;
+        }
 
-1. فایل `index.html` را در مرورگر باز کنید
-2. مقادیر مورد نظر را وارد نمایید:
-   - تعداد گروه‌های سنی
-   - تعداد جلسات سفارشی
-   - مدت قرارداد (3 یا 6 ماهه)
-   - تعداد شرکت‌کنندگان
-3. گزینه‌های تخفیف را انتخاب کنید
-4. دکمه "محاسبه قیمت نهایی" را کلیک کنید
+        /* ماشین حساب */
+        .calculator {
+            background: var(--wood);
+            padding: 3rem;
+            border-radius: 2rem;
+            box-shadow: 0 1rem 3rem rgba(0,0,0,0.1);
+            width: 90%;
+            max-width: 800px;
+        }
 
-## 🎨 سفارشی سازی
+        .form-grid {
+            display: grid;
+            grid-template-columns: repeat(2, 1fr);
+            gap: 2rem;
+            margin-bottom: 2rem;
+        }
 
-### تغییر رنگ‌ها
-در فایل `styles/main.css` متغیرهای CSS را ویرایش کنید:
-```css
-:root {
-    --primary: #1A5F7A;    /* رنگ اصلی */
-    --secondary: #CC7E6B;  /* رنگ ثانویه */
-    --accent: #76C4AE;     /* رنگ تاکیدی */
-    --bg: #FFF3E0;         /* رنگ پس زمینه */
-    --text: #2D2D2D;       /* رنگ متن اصلی */
-}
-```
+        .input-group label {
+            display: block;
+            margin-bottom: 0.5rem;
+            font-weight: bold;
+        }
 
-### تغییر نرخ‌های محاسباتی
-در فایل `scripts/main.js` مقادیر پایه را ویرایش کنید:
-```javascript
-// پارامترهای قیمت‌گذاری
-const BASE_PRICE_PER_AGE_GROUP = 12000000; // قیمت پایه برای هر گروه سنی
-const CUSTOM_SESSION_PRICE = 450000;      // قیمت هر جلسه سفارشی
-```
+        .input-group input,
+        .input-group select {
+            width: 100%;
+            padding: 1rem;
+            border: 2px solid var(--sage);
+            border-radius: 1rem;
+            font-family: inherit;
+        }
 
-## 📜 مجوز
-این پروژه تحت مجوز [MIT](LICENSE) منتشر شده است.
+        button.calculate-btn {
+            background: var(--accent);
+            color: white;
+            padding: 1.5rem 3rem;
+            border: none;
+            border-radius: 1rem;
+            font-size: 1.2rem;
+            cursor: pointer;
+            transition: transform 0.3s;
+            width: 100%;
+        }
 
-## 🤝 مشارکت
-1. ریپازیتوری را فورک کنید
-2. برنچ جدید ایجاد کنید (`git checkout -b feature/your-feature`)
-3. کامیت تغییرات (`git commit -m 'Add some feature'`)
-4. به برنچ اصلی پوش کنید (`git push origin feature/your-feature`)
-5. یک Pull Request ایجاد کنید
+        #result {
+            margin-top: 2rem;
+            padding: 2rem;
+            background: var(--yellow);
+            border-radius: 1rem;
+            text-align: center;
+            font-size: 1.5rem;
+            font-weight: bold;
+        }
 
-## 📧 تماس با ما
-برای پرسش و پیشنهادات: [contact@nuvelab.com](mailto:contact@nuvelab.com)  
-گزارش باگ: [ایجاد Issue جدید](https://github.com/yourusername/nuve-lab-price-calculator/issues)
+        /* انیمیشن‌ها */
+        @keyframes float {
+            0%, 100% { transform: translateY(0); }
+            50% { transform: translateY(-1rem); }
+        }
 
----
+        @media (max-width: 768px) {
+            .section {
+                padding: 2rem;
+                height: auto;
+                min-height: 100vh;
+            }
 
-**نکته:** این پروژه به صورت فعال در حال توسعه است. برای دریافت آخرین بروزرسانی‌ها، ریپازیتوری را ستاره بزنید ⭐
-```
+            .form-grid {
+                grid-template-columns: 1fr;
+            }
 
-این فایل README شامل:
+            .hero h1 {
+                font-size: 2.5rem;
+            }
+        }
+    </style>
+    <link href="https://fonts.googleapis.com/css2?family=Poppins&display=swap" rel="stylesheet">
+    <link href="https://cdn.fontcdn.ir/Font/Persian/Samim/Samim.css" rel="stylesheet">
+</head>
+<body>
+    <header class="header">
+        <div class="logo">NUVÉ Lab</div>
+        <nav>
+            <button class="lang-toggle" onclick="toggleLanguage()">EN/FA</button>
+        </nav>
+    </header>
 
-1. اطلاعات کلی پروژه
-2. دستورالعمل نصب و استفاده
-3. راهنمای سفارشی سازی
-4. مجوز و قوانین
-5. دستورالعمل مشارکت
-6. اطلاعات تماس
-7. نکات فنی مهم
+    <div class="scroll-container">
+        <!-- بخش اصلی -->
+        <section class="section hero">
+            <h1>حرکت خلاقانه کودکانه</h1>
+            <p>با روش‌های نوین آموزشی رشد همه جانبه کودک رو تضمین کنید</p>
+        </section>
 
-----------
+        <!-- ماشین حساب قیمت -->
+        <section class="section">
+            <div class="calculator">
+                <div class="form-grid">
+                    <div class="input-group">
+                        <label>تعداد گروه‌های سنی</label>
+                        <input type="number" id="ageGroups" min="1" value="1">
+                    </div>
+                    
+                    <div class="input-group">
+                        <label>تعداد جلسات سفارشی</label>
+                        <input type="number" id="sessions" min="0" value="0">
+                    </div>
 
-```markdown
-# NUVÉ Lab Price Calculator
+                    <div class="input-group">
+                        <label>مدت قرارداد</label>
+                        <select id="contract">
+                            <option value="3">3 ماهه</option>
+                            <option value="6">6 ماهه</option>
+                        </select>
+                    </div>
 
-![Project Preview](https://via.placeholder.com/800x500.png?text=NUVÉ+Lab+Price+Calculator+Preview)
+                    <div class="input-group">
+                        <label>تعداد شرکت‌کنندگان</label>
+                        <input type="number" id="participants" min="1" value="1">
+                    </div>
+                </div>
 
-An advanced pricing calculator with Persian UI and RTL support
+                <div class="input-group">
+                    <label>
+                        <input type="checkbox" id="siblings">
+                        جلسات خواهر/برادر یا دوتایی
+                    </label>
+                </div>
 
-## ✨ Key Features
+                <button class="calculate-btn" onclick="calculatePrice()">محاسبه قیمت</button>
+                <div id="result"></div>
+            </div>
+        </section>
+    </div>
 
-- 💻 Fully Responsive UI
-- 🎨 Modern Design with Subtle Animations
-- 📱 Mobile-First Approach
-- 🧮 Advanced Price Calculations with Custom Rules
-- 💰 Smart Discount System
-- 🌍 Full RTL (Right-to-Left) Support for Persian
+    <script>
+        // تغییر زبان
+        function toggleLanguage() {
+            const body = document.body;
+            body.dir = body.dir === 'rtl' ? 'ltr' : 'rtl';
+            body.style.fontFamily = body.dir === 'rtl' ? 
+                'var(--font-fa)' : 'var(--font-en)';
+        }
 
-## 🚀 Quick Start
+        // محاسبات قیمت
+        function calculatePrice() {
+            const inputs = {
+                ageGroups: parseInt(document.getElementById('ageGroups').value) || 1,
+                sessions: parseInt(document.getElementById('sessions').value) || 0,
+                contract: document.getElementById('contract').value,
+                siblings: document.getElementById('siblings').checked,
+                participants: parseInt(document.getElementById('participants').value) || 1
+            };
 
-### Prerequisites
-- Modern Browser (Chrome 90+, Firefox 88+, Safari 14+)
-- Internet Connection (for Vazirmatn font)
+            // قیمت پایه
+            let basePrice = 12000000 * inputs.ageGroups;
+            let customization = 450000 * inputs.sessions;
 
-### Installation
-```bash
-git clone https://github.com/yourusername/nuve-lab-price-calculator.git
-cd nuve-lab-price-calculator
-```
+            // تخفیف‌ها
+            let discounts = {
+                startup: 0.5,
+                contract: inputs.contract === '6' ? 0.2 : 0.1,
+                siblings: inputs.siblings ? 0.2 : 0,
+                group: inputs.participants > 5 ? 0.25 : 0
+            };
 
-## 🛠 Usage
+            // اعمال تخفیف‌ها
+            basePrice *= discounts.startup;
+            basePrice *= (1 - discounts.contract);
+            customization *= (1 - discounts.siblings - discounts.group);
 
-1. Open `index.html` in your browser
-2. Input required values:
-   - Age Groups Count
-   - Custom Sessions Number
-   - Contract Duration (3 or 6 months)
-   - Participants Count
-3. Select discount options
-4. Click "Calculate Final Price" button
+            // قیمت نهایی
+            const total = basePrice + customization;
 
-## 🎨 Customization
+            // نمایش نتیجه
+            showResult(total);
+        }
 
-### Color Scheme
-Edit CSS variables in `styles/main.css`:
-```css
-:root {
-    --primary: #1A5F7A;    /* Main brand color */
-    --secondary: #CC7E6B;  /* Secondary color */
-    --accent: #76C4AE;     /* Accent color */
-    --bg: #FFF3E0;         /* Background color */
-    --text: #2D2D2D;       /* Primary text color */
-}
-```
+        function showResult(price) {
+            const resultDiv = document.getElementById('result');
+            resultDiv.innerHTML = `
+                <div style="color: var(--accent); margin-bottom: 1rem;">💰 قیمت نهایی</div>
+                <div style="font-size: 2.5rem;">${price.toLocaleString('fa-IR')}</div>
+                <div style="font-size: 1rem; margin-top: 1rem;">تومان</div>
+            `;
+        }
 
-### Pricing Configuration
-Modify base values in `scripts/main.js`:
-```javascript
-// Pricing parameters
-const BASE_PRICE_PER_AGE_GROUP = 12000000; // Base price per age group
-const CUSTOM_SESSION_PRICE = 450000;      // Price per custom session
-```
+        // اسکرول افکت
+        const sections = document.querySelectorAll('.section');
+        const observer = new IntersectionObserver(entries => {
+            entries.forEach(entry => {
+                if(entry.isIntersecting) {
+                    entry.target.style.opacity = 1;
+                    entry.target.style.transform = 'translateY(0)';
+                }
+            });
+        }, { threshold: 0.25 });
 
-## 📜 License
-This project is licensed under the [MIT License](LICENSE).
-
-## 🤝 Contributing
-
-1. Fork the repository
-2. Create your feature branch (`git checkout -b feature/your-feature`)
-3. Commit your changes (`git commit -m 'Add some feature'`)
-4. Push to the branch (`git push origin feature/your-feature`)
-5. Open a Pull Request
-
-## 📧 Contact
-
-For inquiries: [contact@nuvelab.com](mailto:contact@nuvelab.com)  
-Report bugs: [Open New Issue](https://github.com/yourusername/nuve-lab-price-calculator/issues)
-
----
-
-**Note:** This project is actively maintained. Star the repo ⭐ to stay updated with latest developments.
-
-[View Persian Version](README.fa.md)
-```
-
-This English version includes:
-- Full technical documentation
-- Bilingual support notice
-- Clear contribution guidelines
-- Maintains all functionality from Persian version
-- Standard open-source structure
-- Active development status
-
-The document follows best practices for open-source projects while maintaining the original Persian functionality. Would you like any specific section to be expanded or modified?
+        sections.forEach(section => {
+            section.style.opacity = 0;
+            section.style.transform = 'translateY(50px)';
+            section.style.transition = 'all 0.8s ease-out';
+            observer.observe(section);
+        });
+    </script>
+</body>
+</html>
